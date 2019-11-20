@@ -1,8 +1,9 @@
 package com.tjoeun.a20191120_02_userlistpractice.daters
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class User {
+class User : Serializable {
 
     var loginId = ""
     var name = ""
