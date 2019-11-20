@@ -3,12 +3,15 @@ package com.tjoeun.a20191120_02_userlistpractice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.tjoeun.a20191120_02_userlistpractice.adapters.UserAdapter
 import com.tjoeun.a20191120_02_userlistpractice.daters.User
 import com.tjoeun.a20191120_02_userlistpractice.utils.ConnectServer
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
     var userList = ArrayList<User>()
+    var userAdapter:UserAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        userAdapter = UserAdapter(mContext, userList)
+        userListView.adapter = userAdapter
 
     }
 
@@ -37,6 +42,9 @@ class MainActivity : BaseActivity() {
 
                 var code = json.getInt("code")
 
+//                기존에 받아둔 데이터들을 삭제.
+                userList.clear()
+
                 if (code == 200) {
                     val data = json.getJSONObject("data")
                     val userArr = data.getJSONArray("users")
@@ -44,6 +52,10 @@ class MainActivity : BaseActivity() {
                     for (i in 0..userArr.length()-1) {
                         val userData = User.getUserFromJson(userArr.getJSONObject(i))
                         userList.add(userData)
+                    }
+
+                    runOnUiThread {
+                        userAdapter?.notifyDataSetChanged()
                     }
                 }
 
