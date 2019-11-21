@@ -38,7 +38,7 @@ class CategorySpinnerAdapter(context: Context, res:Int, list:ArrayList<Category>
         categoryTitleTxt.text = data.title
 
 //        String => Color로 변경.
-        categoryColorImg.setBackgroundColor(Color.parseColor(data.color))
+//        categoryColorImg.setBackgroundColor(Color.parseColor(data.color))
 
 
         return row
