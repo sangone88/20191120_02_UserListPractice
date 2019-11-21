@@ -45,6 +45,8 @@ class UserDetailActivity : BaseActivity() {
         userIdEdt.setText(mUser?.loginId)
         userNameEdt.setText(mUser?.name)
 
+        createdAtTxt.text = mUser?.getFormattedCreatedAt()
+
 
     }
 
