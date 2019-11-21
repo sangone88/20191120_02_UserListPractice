@@ -2,6 +2,7 @@ package com.tjoeun.a20191120_02_userlistpractice.adapters
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,8 @@ class CategorySpinnerAdapter(context: Context, res:Int, list:ArrayList<Category>
 //        String => Color로 변경.
 //        categoryColorImg.setBackgroundColor(Color.parseColor(data.color))
 
+        categoryColorImg.background.setColorFilter(Color.parseColor(data.color), PorterDuff.Mode.SRC_ATOP)
+
 
         return row
     }
@@ -60,7 +63,9 @@ class CategorySpinnerAdapter(context: Context, res:Int, list:ArrayList<Category>
         categoryTitleTxt.text = data.title
 
 //        String => Color로 변경.
-        categoryColorImg.setBackgroundColor(Color.parseColor(data.color))
+//        categoryColorImg.setBackgroundColor(Color.parseColor(data.color))
+
+        categoryColorImg.background.setColorFilter(Color.parseColor(data.color), PorterDuff.Mode.SRC_ATOP)
 
 
         return row
