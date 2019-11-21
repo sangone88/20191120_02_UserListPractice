@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
         userListView.setOnItemClickListener { parent, view, position, id ->
             val userData = userList.get(position)
             val intent = Intent(mContext, UserDetailActivity::class.java)
-
+            intent.putExtra("user", userData)
             startActivity(intent)
         }
 
